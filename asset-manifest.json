@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/frontend-ip-address/static/css/main.4d8a53d6.css",
+    "main.js": "/frontend-ip-address/static/js/main.8527eee5.js",
+    "static/media/pattern-bg.png": "/frontend-ip-address/static/media/pattern-bg.a60a3c85aa8b88aac4b7.png",
+    "index.html": "/frontend-ip-address/index.html",
+    "main.4d8a53d6.css.map": "/frontend-ip-address/static/css/main.4d8a53d6.css.map",
+    "main.8527eee5.js.map": "/frontend-ip-address/static/js/main.8527eee5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d8a53d6.css",
+    "static/js/main.8527eee5.js"
+  ]
+}
