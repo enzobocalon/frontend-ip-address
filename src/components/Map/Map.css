@@ -114,3 +114,19 @@
         font-size: 1rem;
     }
 }
+
+@media only screen and (max-height: 800px){
+    .info-row{
+        flex-direction: column;
+        margin-top: 8rem;
+    }
+    .main-content{
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-height: 650px){
+    .info-row{
+        margin-top: 9rem;
+    }
+}
