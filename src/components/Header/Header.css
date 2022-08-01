@@ -25,7 +25,7 @@ header{
     width: 34.5%;
     height: 100%;
     min-height: 63px;
-    padding: 0px 10px;
+    padding: 0px 20px;
     border: none;
     outline: none;
     border-radius: 10px 0 0 10px;
@@ -40,4 +40,40 @@ header{
     justify-content: center;
     align-items: center;
     border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.row-2-1:hover{
+    background-color: hsl(0, 0%, 17%);
+    transition: all .3s ease;
+}
+
+@media only screen and (max-width: 950px){
+  .header-row-1{
+    padding: 1.4rem 0 1rem;
+  }
+
+}
+
+@media only screen and (max-width: 650px){
+    .header-row-2 input{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .header-row-1{
+        padding: 1rem 0;
+    }
+    
+    .header-row-2 input{
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 470px){
+    .header-row-2 input{
+        width: 70%;
+    }
 }

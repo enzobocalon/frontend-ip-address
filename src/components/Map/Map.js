@@ -1,23 +1,36 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import './Map.css'
 
 import { MapContainer, TileLayer, useMap, Popup, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import icon_marker from '../../img/icon-location.svg'
 
 import { UserContext } from '../../context/UserContext'
-import { getData } from '../../services/api'
+import UpdateMap from './UpdateMap'
 
+import L from 'leaflet'
 
 
 const Map = () => {
-
-  const position = [51.505, -0.09]
-
-  const {ipData, locationData, timezoneData, ispData} = useContext(UserContext)
+  const {ipData, locationData, timezoneData, ispData, latitudeData, longitudeData} = useContext(UserContext)
   const [ip, setIP] = ipData;
   const [location, setLocation] = locationData
   const [timezone, setTimezone] = timezoneData
   const [isp, setIsp] = ispData
+  const [latitude, setLatitude] = latitudeData
+  const [longitude, setLongitude] = longitudeData
+
+  const icon = new L.icon({
+    iconUrl: icon_marker,
+    iconRetinaUrl: icon_marker,
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(50, 60),
+    className: 'leaflet-div-icon'
+  })
 
   return (
     <>
@@ -43,16 +56,13 @@ const Map = () => {
               </div>
             </div>
             <div className='map'>
-            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={[51.505, -0.09]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-              </Marker>
+              <Marker position={[latitude, longitude]} icon={icon}/>
+              <UpdateMap coords={[latitude, longitude]}/>
           </MapContainer>
             </div>
         </div>

@@ -5,12 +5,13 @@ import './Header.css'
 
 const Header = () => {
 
-  const {ipData, locationData, timezoneData, ispData} = useContext(UserContext)
+  const {ipData, locationData, timezoneData, ispData, latitudeData, longitudeData} = useContext(UserContext)
   const [ip, setIP] = ipData;
   const [location, setLocation] = locationData
   const [timezone, setTimezone] = timezoneData
   const [isp, setIsp] = ispData
-
+  const [latitude, setLatitude] = latitudeData
+  const [longitude, setLongitude] = longitudeData
 
   const [input, setInput] = useState('')
 
@@ -24,7 +25,8 @@ const Header = () => {
           setLocation(`${response.city}, ${response.country}`)
           setTimezone(`UTC ${response.timezone.abbreviation}:00`)
           setIsp(response.connection.isp_name)
-          
+          setLatitude(response.latitude)
+          setLongitude(response.longitude) 
         }
       )
     }
@@ -37,6 +39,8 @@ const Header = () => {
         setLocation(`${response.city}, ${response.country}`)
         setTimezone(`UTC ${response.timezone.abbreviation}:00`)
         setIsp(response.connection.isp_name)
+        setLatitude(response.latitude)
+        setLongitude(response.longitude)
       })
     }
 
@@ -48,6 +52,8 @@ const Header = () => {
       setLocation(`${response.city}, ${response.country}`)
       setTimezone(`UTC ${response.timezone.abbreviation}:00`)
       setIsp(response.connection.isp_name)
+      setLatitude(response.latitude)
+      setLongitude(response.longitude)
     })
   }, [])
 
@@ -57,7 +63,7 @@ const Header = () => {
             <span>IP Address Tracker</span>
         </div>
         <div className='header-row-2'>
-            <input onChange = {(e) => {setInput(e.target.value)}}/>
+            <input onChange = {(e) => {setInput(e.target.value)}} placeholder='Search for any IP address or domain'/>
             <div className='row-2-1'>
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14" id='search-arrow' onClick = {handleClick}>
                   <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6"/>
