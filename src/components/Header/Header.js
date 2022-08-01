@@ -17,30 +17,30 @@ const Header = () => {
 
   const validIP = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
+  const handleStates = (response) => {
+    setIP(response.ip_address)
+    setLocation(`${response.city}, ${response.country}`)
+    setTimezone(`UTC ${response.timezone.abbreviation}:00`)
+    setIsp(response.connection.isp_name)
+    setLatitude(response.latitude)
+    setLongitude(response.longitude) 
+  }
+
+
   const handleClick = () => {
     if (input.match(validIP)) {
       getData(input).then(
         (response) => { 
-          setIP(response.ip_address)
-          setLocation(`${response.city}, ${response.country}`)
-          setTimezone(`UTC ${response.timezone.abbreviation}:00`)
-          setIsp(response.connection.isp_name)
-          setLatitude(response.latitude)
-          setLongitude(response.longitude) 
+          handleStates(response)
         }
       )
     }
     else if (!input.match(validIP) && input !== ''){
-      console.log('asd')
+      window.alert('Insert a valid IP address.')
     }
     else {
       getData('').then((response) => {
-        setIP(response.ip_address)
-        setLocation(`${response.city}, ${response.country}`)
-        setTimezone(`UTC ${response.timezone.abbreviation}:00`)
-        setIsp(response.connection.isp_name)
-        setLatitude(response.latitude)
-        setLongitude(response.longitude)
+        handleStates(response)
       })
     }
 
@@ -48,12 +48,7 @@ const Header = () => {
 
   useEffect(() => {
     getData('').then((response) => {
-      setIP(response.ip_address)
-      setLocation(`${response.city}, ${response.country}`)
-      setTimezone(`UTC ${response.timezone.abbreviation}:00`)
-      setIsp(response.connection.isp_name)
-      setLatitude(response.latitude)
-      setLongitude(response.longitude)
+      handleStates(response)
     })
   }, [])
 
